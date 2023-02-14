@@ -2,6 +2,8 @@
 
 
 
+
+
 tours = 0
 timer = 0
 
@@ -10,6 +12,8 @@ blanc = ("white",255,255,255)
 couleur = None
 etat = False
 piece = None
+i = 0
+j = 0
 coord = [i][j]
 
 
@@ -86,6 +90,9 @@ E =[[case1,case2,case3,case4,case5,case6,case7,case8],\
     [case41,case42,case43,case44,case45,case46,case47,case48],\
     [case49,case50,case51,case52,case53,case54,case55,case56],\
     [case57,case58,case59,case60,case61,case62,case63,case64]]
+    
+
+
 
 
 
