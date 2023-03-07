@@ -1,0 +1,91 @@
+<!--
+    The basic template that is displayed on every webpage on the screen.
+    Currently includes the header that shows 'Home', 'Quick Join', 'About Us', 'Other Projects', and 'Login'
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href= "/chess-app{{ url_for('static',filename='main.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Chess App</title>
+    </head>
+    <body>
+        <script>
+            function login(){
+                var login_data = "username, password";
+                $.ajax({
+                    type: "POST",
+                    url: '/chess-app/login',
+                    data: {
+                        json: JSON.stringify(login_data)
+                    },
+                    success: function(data) {
+                        console.log("Here:" +data);
+                    }
+                });
+            }
+            function create_login() {
+                $.ajax({
+                    type: "GET",
+                    url: '/chess-app/register',
+                    success: function(data) {
+
+                    }
+                });
+            }
+        </script>
+        <!-- NAVIGATION BAR -->
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Gabe's Chess Website</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/chess-app/quick_join">Quick Join</a></li>
+                    <li><a href="http://gabe-bessler/projects/Chess-App">About This Project</a></li>
+                    <li><a href="http://gabe-bessler/projects/">Other Projects</li>
+                </ul>
+                <button type="button" class="btn btn-primary navbar-btn navbar-right" data-toggle="modal" data-target="#loginModal" id="loginBtn">Sign In</button>
+            </div>
+        </nav>
+
+        <!-- Modal -->
+        <div id="loginModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Log In</h4>
+                        </div>
+                        <div class="modal-body">
+                        <!-- Input fields -->
+                        <input type="text" class="form-control" id="input-field2" value="Username" id="usr">
+                        <input type="password" class="form-control" id="input-field" value="" id="pwd">
+                        <!-- Remember me button -->
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Remember Me</label>
+                        </div>
+                        <!-- Log In -->
+                        <button onclick="login()" class="btn btn-success" data-dismiss="modal">Log In</button>
+                        <!-- Register -->
+                        <button onclick="create_login()" type="button" class="btn btn-default" data-dismiss="modal">Register</button>
+                        <!-- Lost Password -->
+                        <a href="/chess-app/forgot_password">Forgot Password?</a>
+                        </div>
+                        <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block main_body %}
+
+        {% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
